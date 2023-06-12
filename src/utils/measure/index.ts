@@ -140,7 +140,7 @@ Measure.parseOptionsFromString = function (input: any) {
   lexer.addRule(/(fluidounces?|oz\.?|fl\.oz\.)/g, function () {
     obj.ml += num * volume.fluidounces
   })
-  lexer.addRule(/(shots?)/g, function () {
+  lexer.addRule(/(shots?|shot)/g, function () {
     obj.ml += num * volume.shots
   })
   lexer.addRule(/(gills?|gi\.)/g, function () {

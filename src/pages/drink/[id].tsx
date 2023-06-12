@@ -41,7 +41,7 @@ const HomePage: NextPage<PageProps> = ({ id }: { id: string }) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         measurement,
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-        value: measure(measurement).milliliters()
+        value: measure(measurement?.toLocaleLowerCase()).milliliters()
       }
     })
 
