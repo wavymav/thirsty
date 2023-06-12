@@ -52,7 +52,7 @@ const Home: NextPage = () => {
         <meta name='description' content='Thirsty drink finder app' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Box h='100vh' overflow='hidden'>
+      <Box h='100vh' overflowX='hidden'>
         <Navbar title='Thirsty' />
         <SearchInput
           handleOnChange={handleOnChange}
