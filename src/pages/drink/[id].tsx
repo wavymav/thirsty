@@ -14,6 +14,7 @@ import { fetchDrink, useDrink } from '~/hooks/useDrink'
 import { Loading } from '~/components/Loading'
 import { NotFound } from '~/components/NotFound'
 import { measure } from '~/utils/measure'
+import Head from 'next/head'
 
 const PieChart = dynamic(
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
@@ -25,6 +26,7 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>
 const HomePage: NextPage<PageProps> = ({ id }: { id: string }) => {
   const { data: newData, isLoading, isError } = useDrink(id)
   const drink = newData?.drinks?.[0]
+  const name = drink?.strDrink ?? 'Loading...'
   const measurements = Object.entries(drink ?? {})
     .filter((item) => item[0].includes('strMeasure') && !!item[1])
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
@@ -114,10 +116,17 @@ const HomePage: NextPage<PageProps> = ({ id }: { id: string }) => {
   }
 
   return (
-    <main>
-      <Navbar canGoBack title={drink?.strDrink ?? 'Loading...'} />
-      {content()}
-    </main>
+    <>
+      <Head>
+        <title>{`Thirsty - (${name})`}</title>
+        <meta name='description' content='Thirsty drink finder app' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <main>
+        <Navbar canGoBack title={name} />
+        {content()}
+      </main>
+    </>
   )
 }
 
